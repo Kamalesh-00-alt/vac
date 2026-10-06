@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bantr</title>
+    <link rel="stylesheet" href="bantr.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <div class="logo">B</div>
+
+      <div class="sidebar-icon active" title="Home" onclick="showView('feed')">
+        ⌂
+      </div>
+      <div class="sidebar-icon" title="Search" onclick="showView('search')">
+        ⌕
+      </div>
+      <div
+        class="sidebar-icon"
+        title="Create Post"
+        onclick="showView('create')"
+      >
+        ＋
+      </div>
+      <div class="sidebar-icon" title="Profile" onclick="showView('profile')">
+        ◯
+      </div>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-icon" title="Settings" onclick="showView('settings')">
+        ⚙
+      </div>
+    </aside>
+
+    <main class="main-wrapper">
+      <!-- HOME -->
+      <section id="feed-view" class="view-section">
+        <div class="topbar">
+          <div>
+            <h1>Bantr</h1>
+            <p>What's happening?</p>
+          </div>
+          <button class="small-button" onclick="loadPosts()">Refresh</button>
+        </div>
+
+        <div class="genre-bar">
+          <button onclick="loadDiscover('all')">All</button>
+          <button onclick="loadDiscover('popculture')">Pop Culture</button>
+          <button onclick="loadDiscover('memes')">Memes</button>
+          <button onclick="loadDiscover('music')">Music</button>
+          <button onclick="loadDiscover('movies')">Movies</button>
+          <button onclick="loadDiscover('gaming')">Gaming</button>
+          <button onclick="loadDiscover('art')">Art</button>
+          <button onclick="loadDiscover('photography')">Photography</button>
+          <button onclick="loadDiscover('fashion')">Fashion</button>
+          <button onclick="loadDiscover('technology')">Technology</button>
+          <button onclick="loadDiscover('sports')">Sports</button>
+          <button onclick="loadDiscover('books')">Books</button>
+          <button onclick="loadDiscover('Politics')">Politics</button>
+        </div>
+
+        <div id="feed-grid" class="feed-grid"></div>
+      </section>
+
+      <!-- SEARCH -->
+      <section id="search-view" class="view-section" style="display: none">
+        <div class="topbar">
+          <div>
+            <h1>Search</h1>
+            <p>Find users, posts and genres.</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Search Bantr..."
+            onkeydown="searchOnEnter(event)"
+          />
+          <button onclick="searchBantr()">Search</button>
+        </div>
+
+        <div id="search-results"></div>
+      </section>
+
+      <!-- CREATE -->
+      <section id="create-view" class="view-section" style="display: none">
+        <div class="topbar">
+          <div>
+            <h1>Create Post</h1>
+            <p>Share something with Bantr.</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <textarea
+            id="post-text"
+            rows="7"
+            placeholder="What's on your mind?"
+          ></textarea>
+
+          <input
+            id="post-image"
+            type="text"
+            placeholder="Image URL (optional)"
+          />
+          <select id="post-genre">
+            <option value="random">Random</option>
+            <option value="popculture">Pop Culture</option>
+            <option value="memes">Memes</option>
+            <option value="music">Music</option>
+            <option value="movies">Movies</option>
+            <option value="gaming">Gaming</option>
+            <option value="art">Art</option>
+            <option value="photography">Photography</option>
+            <option value="fashion">Fashion</option>
+            <option value="technology">Technology</option>
+            <option value="sports">Sports</option>
+            <option value="books">Books</option>
+            <option value="politics">Politics</option>
+          </select>
+
+          <button onclick="createPost()">Publish Post</button>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profile-view" class="view-section" style="display: none">
+        <div class="profile-header">
+          <div class="profile-avatar-large">◯</div>
+
+          <div class="profile-meta">
+            <h2 id="profile-username">@kamalesh13</h2>
+            <p id="profile-name" class="profile-bio">Kamalesh</p>
+            <p id="profile-bio" class="profile-bio"></p>
+
+            <div class="profile-stats">
+              <span><strong id="profile-post-count">0</strong> Posts</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Edit Profile</h3>
+          <input id="edit-name" type="text" placeholder="Your name" />
+          <textarea id="edit-bio" rows="3" placeholder="Your bio"></textarea>
+          <button onclick="updateProfile()">Save Profile</button>
+        </div>
+
+        <h3 class="section-title">Your Posts</h3>
+        <div id="profile-feed" class="feed-grid"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings-view" class="view-section" style="display: none">
+        <div class="topbar">
+          <h1>Settings</h1>
+        </div>
+
+        <div class="form-card">
+          <p>
+            Currently logged in as
+            <strong id="settings-user">@kamalesh13</strong>
+          </p>
+          <button class="danger" onclick="logout()">Log out</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- LOGIN / REGISTER -->
+    <div id="auth-screen" class="auth-screen">
+      <div class="auth-card">
+        <h1>Bantr</h1>
+        <p id="auth-message">Log in to continue.</p>
+
+        <input id="auth-username" type="text" placeholder="Username" />
+        <input id="auth-password" type="password" placeholder="Password" />
+        <input id="auth-name" type="text" placeholder="Name (register only)" />
+
+        <button type="button" onclick="login()">Log In</button>
+        <button type="button" class="secondary-button" onclick="register()">
+          Create Account
+        </button>
+
+        <small>
+          Course project authentication: credentials are stored in MongoDB.
+        </small>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

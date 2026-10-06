@@ -1,0 +1,410 @@
+body {
+  background-color: #121316;
+  color: #ededed;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 70px;
+  background-color: #18191e;
+  border-right: 1px solid #272930;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.sidebar-icon {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #8e95a5;
+  font-size: 23px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.sidebar-icon:hover,
+.sidebar-icon.active {
+  background-color: #272930;
+  color: #ffffff;
+}
+
+.sidebar-spacer {
+  flex: 1;
+}
+
+.main-wrapper {
+  margin-left: 70px;
+  padding: 30px;
+  max-width: none;
+  width: calc(100% - 70px);
+}
+
+.feed-grid {
+  columns: 3 320px;
+  column-gap: 16px;
+  width: 100%;
+}
+
+.post-card {
+  background-color: #1a1c22;
+  border: 1px solid #272930;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  break-inside: avoid;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.post-card:hover {
+  border-color: #363a45;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  display: block;
+  background-color: #121316;
+}
+
+.comments-container {
+  display: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #272930;
+}
+
+.comments-container.open {
+  display: block;
+}
+
+.post-time {
+  font-size: 11px;
+  color: #64748b;
+  float: right;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.topbar h1 {
+  margin: 0 0 5px;
+  font-size: 26px;
+  color: #ffffff;
+}
+
+.topbar p {
+  margin: 0;
+  color: #8e95a5;
+  font-size: 14px;
+}
+
+.genre-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+}
+
+.genre-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.genre-bar button,
+.small-button {
+  background: #1e2026;
+  border: 1px solid #2c2f38;
+  color: #d1d5db;
+  padding: 8px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+.genre-bar button:hover,
+.small-button:hover {
+  background: #282b34;
+  border-color: #3f4350;
+  color: #ffffff;
+}
+
+.feed-grid {
+  width: 100%;
+}
+
+.post-card {
+  background-color: #1a1c22;
+  border: 1px solid #272930;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.post-card:hover {
+  border-color: #363a45;
+}
+
+.post-header {
+  padding: 14px 16px;
+  color: #8e95a5;
+  font-size: 14px;
+}
+
+.post-header strong {
+  color: #ffffff;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+  display: block;
+  background-color: #121316;
+}
+
+.post-text {
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: #e2e8f0;
+}
+
+.post-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #272930;
+  font-size: 13px;
+  color: #8e95a5;
+}
+
+.action-row {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  background: none;
+  border: 0;
+  color: #8e95a5;
+  padding: 4px 6px;
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+
+.action-btn:hover {
+  color: #ffffff;
+}
+
+.comment-box {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.comment-box input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.comments {
+  margin-top: 10px;
+}
+
+.comment {
+  border-top: 1px solid #272930;
+  padding: 8px 0;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.form-card,
+.empty-card {
+  background: #1a1c22;
+  border: 1px solid #272930;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-card input,
+.form-card textarea,
+.form-card select,
+.auth-card input,
+.comment-box input {
+  width: 100%;
+  background: #121316;
+  border: 1px solid #2c2f38;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-card input:focus,
+.form-card textarea:focus,
+.form-card select:focus,
+.comment-box input:focus {
+  border-color: #4b5563;
+}
+
+.form-card button,
+.auth-card button {
+  background: #ffffff;
+  color: #121316;
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: opacity 0.15s ease;
+}
+
+.form-card button:hover,
+.auth-card button:hover {
+  opacity: 0.9;
+}
+
+.secondary-button {
+  background: #272930 !important;
+  color: #ffffff !important;
+  margin-top: 8px;
+}
+
+.danger {
+  background: #991b1b !important;
+  color: #ffffff !important;
+}
+
+.section-title {
+  margin-top: 25px;
+  color: #ffffff;
+}
+
+.profile-header {
+  background-color: #1a1c22;
+  border: 1px solid #272930;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  min-height: 125px;
+}
+
+.profile-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #272930;
+  border: 1px solid #363a45;
+  text-align: center;
+  line-height: 80px;
+  float: left;
+  margin-right: 20px;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.profile-meta h2 {
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.profile-bio {
+  color: #8e95a5;
+  margin: 4px 0 12px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 20px;
+  color: #8e95a5;
+}
+
+.profile-stats strong {
+  color: #ffffff;
+}
+
+.auth-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 19, 22, 0.95);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.auth-card {
+  width: min(400px, 90%);
+  background: #1a1c22;
+  border: 1px solid #272930;
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.auth-card h1 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.auth-card p,
+.auth-card small {
+  color: #8e95a5;
+  display: block;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 700px) {
+  .main-wrapper {
+    padding: 15px;
+    margin-left: 70px;
+    max-width: 100%;
+  }
+
+  .profile-stats {
+    flex-wrap: wrap;
+  }
+}
